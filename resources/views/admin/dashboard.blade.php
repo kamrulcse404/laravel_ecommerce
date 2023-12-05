@@ -1,1 +1,5 @@
-<h1>Hi, From Admin Dashboard</h1>
+@extends('admin.layouts.template')
+
+@section('content')
+    <h1>Hello Kamrul Hasan</h1>
+@endsection
