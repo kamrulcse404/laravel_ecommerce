@@ -13,11 +13,27 @@
                     <small class="text-muted float-end">Input information</small>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('storecategory') }}" method="POST">
+
+                        @csrf
+
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="category_name">Category Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Elentronics" />
+                                <input type="text" class="form-control" id="category_name" name="category_name"
+                                    placeholder="Elentronics" />
                             </div>
                         </div>
                         <div class="row justify-content-end">
