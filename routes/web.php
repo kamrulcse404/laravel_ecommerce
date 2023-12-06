@@ -46,6 +46,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/store-category', 'StoreCategory')->name('storecategory');
         Route::get('/admin/edit-category/{id}', 'EditCategory')->name('editcategory');
         Route::put('/admin/update-category/{id}', 'UpdateCategory')->name('updatecategory');
+        Route::get('/admin/delete-category/{id}', 'DeleteCategory')->name('deletecategory');
+        // Route::delete('/admin/delete-category/{id}', 'DeleteCategory')->name('deletecategory');
     });
 
     Route::controller(SubCategoryController::class)->group(function () {

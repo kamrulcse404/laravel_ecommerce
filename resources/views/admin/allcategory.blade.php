@@ -35,7 +35,17 @@
                                 <td>{{ $category->slug }}</td>
                                 <td>
                                     <a href="{{ route('editcategory', $category->id) }}" class="btn btn-primary">Edit</a>
-                                    <a href="" class="btn btn-warning">Delete</a>
+
+
+                                    <a href="{{ route('deletecategory', $category->id) }}"
+                                        class="btn btn-warning">Delete</a>
+
+                                    {{-- <form action="{{ route('deletecategory', $category->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-warning">Delete</button>
+                                    </form> --}}
+
                                 </td>
                             </tr>
                         @endforeach
