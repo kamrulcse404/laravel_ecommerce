@@ -14,80 +14,94 @@
                     <small class="text-muted float-end">Input information</small>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
-                        
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+
+                    <form action="{{ route('storeproduct') }}" method="POST" enctype="multipart/form-data">
+
+                        @csrf
+
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="product_name">Product Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="product_name" name="product_name"
-                                    placeholder="Iphone 13 Pro Max" />
+                                    placeholder="Iphone 13 Pro Max" value="{{ old('product_name') }}" />
                             </div>
                         </div>
 
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="product_name">Product Price</label>
+                            <label class="col-sm-2 col-form-label" for="price">Product Price</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="product_name" name="product_name"
-                                    placeholder="12" />
+                                <input type="number" class="form-control" id="price" name="price" placeholder="12"
+                                    value="{{ old('price') }}" />
                             </div>
                         </div>
 
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="product_name">Product Quantity</label>
+                            <label class="col-sm-2 col-form-label" for="quantity">Product Quantity</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="product_name" name="product_name"
-                                    placeholder="120" />
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="product_name">Product Short Description</label>
-                            <div class="col-sm-10">
-                                <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+                                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="120"
+                                    value="{{ old('quantity') }}" />
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="product_name">Product Long Description</label>
+                            <label class="col-sm-2 col-form-label" for="product_short_des">Product Short Description</label>
                             <div class="col-sm-10">
-                                <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+                                <textarea name="product_short_des" class="form-control" id="product_short_des" cols="30" rows="5">{{ old('product_short_des') }}</textarea>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="category">Select Category</label>
+                            <label class="col-sm-2 col-form-label" for="product_long_des">Product Long Description</label>
                             <div class="col-sm-10">
-                                <select class="form-select" id="category" name="category"
+                                <textarea name="product_long_des" class="form-control" id="product_long_des" cols="30" rows="5">{{ old('product_long_des') }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="product_category_id">Select Category</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" id="category" name="product_category_id"
                                     aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option selected>Select product category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="subcategory">Select Sub Category</label>
+                            <label class="col-sm-2 col-form-label" for="product_subcategory_id">Select Sub Category</label>
                             <div class="col-sm-10">
-                                <select class="form-select" id="subcategory" name="subcategory"
+                                <select class="form-select" id="product_subcategory_id" name="product_subcategory_id"
                                     aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option selected>Select product sub-category</option>
+                                    @foreach ($subcategories as $subcategory)
+                                        <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="product_image">Upload Product Image</label>
+                            <label class="col-sm-2 col-form-label" for="product_img">Upload Product Image</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" id="formFile" name="product_image"/>
+                                <input class="form-control" type="file" id="product_img" name="product_img" />
                             </div>
                         </div>
 
