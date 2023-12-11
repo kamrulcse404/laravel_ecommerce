@@ -5,24 +5,22 @@
             <div class="col-lg-4">
                 <div class="box_main">
                     <div class="tshirt_img">
-                        <img src="man.png" alt="">
+                        <img src="{{ asset($product->product_img) }}" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="box_main">
                     <div class="product-info">
-                        <h4 class="shirt_text text-left">Man shirt</h4>
-                        <p class="price_text text-left">Price <span style="color: #2626262;">$ 30</span></p>
+                        <h4 class="shirt_text text-left">{{ $product->product_name }}</h4>
+                        <p class="price_text text-left">Price : <span style="color: #2626262;">${{ $product->price }}</span></p>
                     </div>
                     <div class="my-3 product-details">
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus labore
-                            necessitatibus explicabo, ratione voluptatibus sequi cupiditate quo reprehenderit error aliquam
-                            enim tenetur ea, magni consequuntur doloremque quasi dolorem cum porro?</p>
+                        <p class="lead">{{ $product->product_long_des }}</p>
                         <ul class="p-2 bg-light my-2">
-                            <li>Category - Electronice</li>
-                            <li>Subcategory - Mobile</li>
-                            <li>Available quantity - 10</li>
+                            <li>Category - {{ $product->product_category_name }}</li>
+                            <li>Subcategory - {{ $product->product_subcategory_name }}</li>
+                            <li>Available quantity - {{ $product->quantity }}</li>
                         </ul>
                     </div>
 

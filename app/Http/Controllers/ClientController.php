@@ -17,8 +17,10 @@ class ClientController extends Controller
         return view('user_template.category', compact('category', 'products'));
     }
 
-    public function SingleProduct(){
-        return view('user_template.product');
+    public function SingleProduct($id){
+        $product = Product::findOrFail($id);
+
+        return view('user_template.product', compact('product'));
     }
 
     public function AddToCart(){
