@@ -1,5 +1,6 @@
 @php
     $categories = App\Models\Category::latest()->get();
+    $subcategories = App\Models\Subcategory::latest()->get();
 
 @endphp
 
