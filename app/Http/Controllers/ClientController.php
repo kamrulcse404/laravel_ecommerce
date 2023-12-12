@@ -49,4 +49,12 @@ class ClientController extends Controller
     public function CustomerService(){
         return view('user_template.customerservice');
     }
+
+    public function PendingOrders(){
+        return view('user_template.pendingorders');
+    }
+
+    public function History(){
+        return view('user_template.history');
+    }
 }
