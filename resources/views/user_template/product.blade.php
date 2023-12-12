@@ -26,9 +26,19 @@
                     </div>
 
                     <div class="btn_main">
-                        <div class="btn btn-warning">
-                            <a href="#">Add To Cart</a>
-                        </div>
+                        <form action="{{ route('addproducttocart', $product->id) }}" method="post">
+
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="product_quantity">How Many Pics?</label>
+                                <input class="form-control" type="number" min="1" placeholder="1"
+                                    name="product_quantity">
+                            </div>
+
+
+                            <input type="submit" class="btn btn-warning" value="Add To Cart">
+                        </form>
                     </div>
                 </div>
 
@@ -53,7 +63,13 @@
                                         <div class="tshirt_img"><img src="{{ asset($product->product_img) }}">
                                         </div>
                                         <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
+
+                                            <form action="{{ route('addproducttocart', $product->id) }}" method="post">
+
+                                                @csrf
+
+                                                <input type="submit" class="btn btn-warning" value="Buy Now">
+                                            </form>
                                             <div class="seemore_bt"><a
                                                     href="{{ route('singleproduct', [$product->id, $product->slug]) }}">See
                                                     More</a></div>

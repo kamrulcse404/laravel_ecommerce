@@ -30,6 +30,10 @@ class ClientController extends Controller
         return view('user_template.addtocart');
     }
 
+    public function AddProductToCart($id){
+        // return view('user_template.addtocart');
+    }
+
     public function Checkout(){
         return view('user_template.checkout');
     }
