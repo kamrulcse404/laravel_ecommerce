@@ -52,6 +52,12 @@ class ClientController extends Controller
         return redirect()->route('addtocart')->with('message', 'Your Item Added To Cart Successfully!');
     }
 
+    public function RemoveCartItem($id){
+        Cart::findOrFail($id)->delete();
+
+        return redirect()->route('addtocart')->with('message', 'Your Item Removed From Cart Successfully');
+    }
+
     public function Checkout(){
         return view('user_template.checkout');
     }
