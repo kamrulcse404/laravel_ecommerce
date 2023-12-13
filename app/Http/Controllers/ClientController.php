@@ -58,6 +58,10 @@ class ClientController extends Controller
         return redirect()->route('addtocart')->with('message', 'Your Item Removed From Cart Successfully');
     }
 
+    public function GetShippingAddress(){
+        return view('user_template.shippingaddress');
+    }
+
     public function Checkout(){
         return view('user_template.checkout');
     }

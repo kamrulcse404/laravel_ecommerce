@@ -40,20 +40,21 @@
                                 <td>{{ $product_name }}</td>
                                 <td>{{ $cart_item->quantity }}</td>
                                 <td>{{ $cart_item->price }}</td>
-                                <td><a href="{{route('removecartitem', $cart_item->id)}}" class="btn btn-warning">Remove</a></td>
+                                <td><a href="{{ route('removecartitem', $cart_item->id) }}" class="btn btn-warning">Remove</a>
+                                </td>
 
                             </tr>
-
-                            
                         @endforeach
 
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Total</td>
-                            <td>{{  $total }}</td>
-                        </tr>
+                        @if ($total > 0)
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td>{{ $total }}</td>
+                                <td><a href="{{ route('shippingaddress') }}" class="btn btn-primary">Checkout Now</a></td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
             </div>
