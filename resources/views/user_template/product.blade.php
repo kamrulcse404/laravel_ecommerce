@@ -26,14 +26,17 @@
                     </div>
 
                     <div class="btn_main">
-                        <form action="{{ route('addproducttocart', $product->id) }}" method="post">
+                        <form action="{{ route('addproducttocart') }}" method="post">
 
                             @csrf
-
+                            <input type="hidden" value="{{ $product->id }}" name="product_id">
                             <div class="form-group">
-                                <label for="product_quantity">How Many Pics?</label>
+                               
+                                <label for="quantity">How Many Pics?</label>
                                 <input class="form-control" type="number" min="1" placeholder="1"
-                                    name="product_quantity">
+                                    name="quantity" id="quantity">
+
+                                    <input type="hidden" value="{{ $product->price }}" name="price">
                             </div>
 
 
@@ -64,9 +67,12 @@
                                         </div>
                                         <div class="btn_main">
 
-                                            <form action="{{ route('addproducttocart', $product->id) }}" method="post">
+                                            <form action="{{ route('addproducttocart') }}" method="post">
 
                                                 @csrf
+                                                <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                                <input type="hidden" value="{{ $product->price }}" name="price">
+                                                <input type="hidden" value="1" name="quantity">
 
                                                 <input type="submit" class="btn btn-warning" value="Buy Now">
                                             </form>
