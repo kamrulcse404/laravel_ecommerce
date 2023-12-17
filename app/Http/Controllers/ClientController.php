@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ShippingInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,6 +61,24 @@ class ClientController extends Controller
 
     public function GetShippingAddress(){
         return view('user_template.shippingaddress');
+    }
+
+    public function AddShippingAddress(Request $request){
+        $request->validate([
+            'phone_number' => 'required',
+            'city_name' => 'required',
+            'postal_code' => 'required',
+        ]);
+
+
+        ShippingInfo::insert([
+           'user_id' => Auth::id(),
+           'phone_number' => $request->phone_number,
+           'city_name' => $request->city_name,
+           'postal_code' => $request->postal_code,
+        ]);
+
+        return redirect()->route('checkout')->with('message', 'Shipping info Added Successfully');
     }
 
     public function Checkout(){
