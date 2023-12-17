@@ -69,5 +69,21 @@
                 </div>
             </div>
         </div>
+
+        <form action="" method="POST" >
+            @csrf
+
+            <input type="submit" value="Place Order" class="btn btn-primary mr-4">
+
+        </form>
+
+        <form action="" method="POST">
+            @csrf
+
+            <input type="submit" value="Cancle Order" class="btn btn-danger">
+
+        </form>
+
+
     </div>
 @endsection
