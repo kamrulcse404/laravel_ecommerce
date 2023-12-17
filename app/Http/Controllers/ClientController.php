@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ShippingInfo;
 use Illuminate\Http\Request;
@@ -89,6 +90,30 @@ class ClientController extends Controller
         $shipping_address = ShippingInfo::where('user_id', $user_id)->first();
 
         return view('user_template.checkout', compact('cart_items', 'shipping_address'));
+    }
+
+
+    public function PlaceOrder(){
+        $user_id = Auth::id();
+        $cart_items = Cart::where('user_id', $user_id)->get();
+        $shipping_address = ShippingInfo::where('user_id', $user_id)->first();
+
+        foreach ($cart_items as $item) {
+            Order::insert([
+                'userid' => $user_id,
+                'shipping_phoneNumber' => $shipping_address->phone_number,
+                'shipping_city' => $shipping_address->city_name,
+                'shipping_postalcode' => $shipping_address->postal_code,
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+                'total_price' => $item->price,
+            ]);
+
+            $id = $item->id;
+            Cart::findOrFail($id)->delete();
+        }
+
+        return redirect()->route('pendingorders')->with('message', 'Your Order has been placed Successfully');
     }
 
     public function UserProfile(){
