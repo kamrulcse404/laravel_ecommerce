@@ -113,6 +113,8 @@ class ClientController extends Controller
             Cart::findOrFail($id)->delete();
         }
 
+        ShippingInfo::where('user_id', $user_id)->first()->delete();
+
         return redirect()->route('pendingorders')->with('message', 'Your Order has been placed Successfully');
     }
 
@@ -133,7 +135,9 @@ class ClientController extends Controller
     }
 
     public function PendingOrders(){
-        return view('user_template.pendingorders');
+
+        $pending_orders = Order::where('status', 'pending')->latest()->get();
+        return view('user_template.pendingorders', compact('pending_orders'));
     }
 
     public function History(){
